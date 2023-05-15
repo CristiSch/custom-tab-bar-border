@@ -17,7 +17,7 @@ class CustomTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: InkWell(
+      child: GestureDetector(
         child: Container(
           height: 50,
           decoration: _decoration(),
@@ -31,7 +31,7 @@ class CustomTab extends StatelessWidget {
   }
 
   BoxDecoration _decoration() => BoxDecoration(
-    color: isSelected ? Colors.white : Colors.black26,
+        color: isSelected ? Colors.white : Colors.transparent,
         border: Border(
           bottom: isSelected
               ? BorderSide.none
@@ -45,12 +45,37 @@ class CustomTab extends StatelessWidget {
                   width: 1,
                 )
               : BorderSide.none,
-          right: isFirst
+          right: (isFirst && isSelected)
+              ? BorderSide(
+                  color: Colors.black,
+                  width: 1,
+                )
+              : BorderSide.none,
+          left: (!isFirst && isSelected)
               ? BorderSide(
                   color: Colors.black,
                   width: 1,
                 )
               : BorderSide.none,
         ),
+        boxShadow: isSelected // Tab shadow logic
+            ? [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: isFirst
+                      ? Offset(4, -4)
+                      : Offset(-4, -4), // changes position of shadow
+                ),
+              ]
+            : [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: -4,
+                  blurRadius: 7,
+                  offset: Offset(0, 35), // changes position of shadow
+                ),
+              ],
       );
 }

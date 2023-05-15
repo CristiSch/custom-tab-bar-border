@@ -36,13 +36,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            _profileHeader(),
-            _customTabBar(),
-            _getPageByIndex(selectedTabIndex)
-          ],
+      body: Container(
+        color: Colors.white,
+        child: Center(
+          child: Column(
+            children: [
+              _profileHeader(),
+              _customTabBar(),
+              _getPageByIndex(selectedTabIndex)
+            ],
+          ),
         ),
       ),
     );
@@ -50,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _profileHeader() => Container(
         height: 200,
-        color: Colors.black26,
+        color: Colors.white,
         child: Center(
           child: Text('Profile header'),
         ),
